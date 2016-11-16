@@ -64,7 +64,7 @@ footer {
 	<ul class="col-sm-2 nav nav-pills nav-stacked">
     
     
-    <li><a href ="MEMLuyenTap.jsp">Luyện tập</a></li>
+    <li class="active"><a href ="MEMLuyenTap.jsp">Luyện tập</a></li>
     <li><a href ="MEMLamBaiThi.jsp">Làm bài thi thử</a></li>
     <li><a href ="MEMUpFile.jsp">Upload File</a></li>
     <li><a href="MEMShareTaiLieu.jsp" >Share Tài Liệu</a></li>
