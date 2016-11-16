@@ -89,7 +89,7 @@ angular.module('sortApp', [])
 		
     <li class="active"><a href ="ADHome.jsp">Quản Lý User</a></li>
     <li><a href ="tinNhan.jsp">Upload Đề Thi</a></li>
-    <li><a href ="ADGuiMail.jsp">Soạn Tin</a></li>
+    <li><a href ="ADGuiMail.jsp">Gửi E-mail</a></li>
     <ul>
 		</div>
 	</div>
@@ -133,6 +133,15 @@ angular.module('sortApp', [])
             <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
+        <td>
+        Xem Thông Tin
+        </td>
+        <td>
+        	Gửi E-mail
+        	
+        </td>
+        <td>Xóa 
+        </td>
       </tr>
     </thead>
     <table class="table table-hover">
@@ -145,6 +154,9 @@ angular.module('sortApp', [])
         <td>{{ roll.name }}</td>
         <td>{{ roll.username }}</td>
         <td>{{ roll.date }}</td>
+        <td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
+        <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
+      	<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
       </tr>
     </tbody>
     <button class="glyphicon glyphicon-trash" id="bt_xoa" style="width: 40px ;height: 25px; margin-top: 10px;margin-left: 10px;" title="Xóa">
@@ -159,3 +171,4 @@ angular.module('sortApp', [])
 <footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>
 </body>
 </html>
+
