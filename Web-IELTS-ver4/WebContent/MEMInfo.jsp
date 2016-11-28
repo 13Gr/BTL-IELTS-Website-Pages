@@ -1,17 +1,17 @@
 <%@ page language="java"  contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html>
 <head><title>Luyen thi IELTS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="css/Thaydoithongtin.css" rel="stylesheet">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -53,7 +53,7 @@ p{
 
 <div>
 <a href="Login-ThanhCong.jsp">
-<img  src=" Image/cover.jpg" alt="logo 1" width="1348" height="300">
+<img  src=" Image/cover.jpg" alt="logo 1" class="img-responsive">
 </a>
 </div>
 <div>
@@ -61,21 +61,25 @@ p{
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span>  Trang chủ</a>
+     <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span>  Trang chủ</a>
     </div>
-    
-    <ul class="nav navbar-nav navbar-right">
-     <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
+    <ul class="nav navbar-nav">
+      <li ><a href="Login-ThanhCong.jsp">Home</a></li>
+      <li><a href="Gioithieu.jsp#">Giới thiệu</a></li>
+	  <li><a href="LienHe.jsp">Liên hệ</a></li>
+    </ul>
+     <ul class="nav navbar-nav navbar-right">
+      
+       <li class="dropdown">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="MEMInfo.jsp.jsp"><span class="glyphicon glyphicon-user"></span>Thông tin người dùng</a></li>
-            
+          <li><a href="MEMInfo.jsp.jsp"><span class="glyphicon glyphicon-user"></span>Thông tin người dùng</a></li>
+            <li><a href="Thongtinhocvien.jsp">Thông tin học viên</a></li>
             <li><a href="MEMDoiMatKhau.jsp"><span class="glyphicon glyphicon-refresh"></span>Đổi mật khẩu</a></li>
-            
             <li role="separator" class="divider"></li>
-            <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span>Đăng xuất</a></li>
-            
+           <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span>Đăng xuất</a></li>
           </ul>
+        </li>
     </ul>
   </div>
 </nav>
@@ -91,23 +95,29 @@ p{
     <li><a href ="MEMLamBaiThi.jsp">Làm bài thi thử</a></li>
     <li><a href ="MEMUpFile.jsp">Upload File</a></li>
     <li><a href="MEMShareTaiLieu.jsp" >Share Tài Liệu</a></li>
-    
-    <li><a href="MEMGuiEmail.jsp">Gửi E-mail cho Admin</a></li>
+   <li><a href="MEMGuiEmail.jsp">Gửi E-mail cho Admin</a></li>
   </ul>
 		</div>
 	</div>
     <div class="col-sm-8">
 	<center><h1>THÔNG TIN CÁ NHÂN HỌC VIÊN</h1></center>
-<form name="xuly" action="" method="post">
+	<form name="xuly" action="" method="post">
 	<fieldset>
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://localhost/ltweb-group13"
+    user="root"  password="phucpro2193"/>
+	<sql:query dataSource="${snapshot}" var="result">
+		SELECT * from member where username='${sessionScope.username}';
+	</sql:query>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">		
 			<tr class="table">
-				<th class="left"><p>Họ và tên: </p></th>	
-				<td class="right" name="first_name"><%=session.getAttribute("firstname")%></td>
+			<c:forEach var="row" items="${result.rows}">
+				<th class="left"><p>Họ và tên: </p></th>
+				<td class="right" name="name"><c:out value="${row.mname}"/></td>
 			</tr>
 			<tr class="table">
 				<th class="left"><p>Ngày Sinh:</p></th>
-				<td class="right"><p>dd/mm/yyyy</p></td>
+				<td class="right"><c:out value="${row.ngaysinh}"/></td>
 			</tr>
 			<tr class="table">
 				<th class="left"><p>Giới tính</p></th>
@@ -115,15 +125,15 @@ p{
 			</tr>
 			<tr class="table">
 				<th class="left"><p>Email:</p></th>
-				<td class="right">NVA@gmail.com</td>
+				<td class="right"><c:out value="${row.email}"/></td>
 			</tr>
 			<tr class="table">
 				<th class="left"><p>Tên đăng nhập:</p></th>
-				<td class="right"><%=session.getAttribute("userid")%></td>
+				<td class="right"><c:out value="${row.username}"/></td>
 			</tr>
 			<tr class="table">
 				<th class="left"><p>Mật khẩu:</p></th>
-				<td class="right">*******</td>
+				<td class="right"><c:out value="${row.pass}"/></td>
 				<td class="right"><a class="password-window " href="#password-box">Đổi mật khẩu</a></td>
 			</tr>
 		</table>
@@ -133,29 +143,27 @@ p{
 				<a href="#info-box" class="info-window btn btn-primary">Thay đổi thông tin</a>
 				<a href="TienTrinh.jsp#" class="btn btn-primary">Tiến trình</a>
 				<a href="Upload-File.jsp" class="btn btn-primary">Tài liệu upload</a>
-
 			</div>
-			
-
 		</div>
 	</fieldset>
 </form>
 <div class="info" id="info-box">Đăng nhập
  <a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="close.png" /></a>
-<form class="info-content" action="#" method="post">
+<form class="info-content" action="Update-MEMInfo.jsp" method="post">
 	<label class="infouser">
  	<span>Họ và tên: </span>
- 	<input id="name" type="text" autocomplete="on" name="username" placeholder="Username" value="" />
+ 	<input id="name" type="text" autocomplete="on" name="username" placeholder="Username" value="${row.mname}" />
 	 </label>
  	<label class="birthday">
  	<span>Ngày sinh:</span>
- 	<input id="birthday" type="datetime-local" name="datetime" placeholder="Datetime" value="" />
+ 	<input id="birthday" type="datetime-local" name="ngaysinh" placeholder="Datetime" value="${row.ngaysinh}" />
  	</label>
  	<label class="email">
  	<span>Email: </span>
- 	<input type="email" size="25" name="user" placeholder="email">
+ 	<input type="email" size="25" name="email" placeholder="email" value="${row.email}">
  	</label>
- 	<button class="button submit-button" type="button">OK</button>
+ 	<button class="button submit-button" type="submit" value="Update">OK</button>
+ 	</c:forEach>
   	</form> 
   </div>
 
