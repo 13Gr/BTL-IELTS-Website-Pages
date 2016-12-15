@@ -44,7 +44,7 @@ footer {
 </head>
 <body background="Image/bgr.jpg">
 <div>
-<a href="Login-ThanhCong.jsp">
+<a href="MEMHome.jsp">
 <img align ="center" src=" Image/cover.jpg" alt="logo 1" width="1348" height="300">
 </a>
 </div>
@@ -57,6 +57,7 @@ footer {
     </div>
     
     <ul class="nav navbar-nav navbar-right">
+    <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -124,8 +125,8 @@ footer {
 		<br>
 		<div class="container col-sm-8">
 			<div class="btn-group btn-group-justified">
-				<a href="ThongTinHocVien.jsp" class="btn btn-primary">Quay Lại</a>
-				<a href="ThongTinHocVien.jsp" class="btn btn-primary">Thay đổi</a>
+				<a href="MEMInfo.jsp" class="btn btn-primary">Quay Lại</a>
+				<a href="MEMInfo.jsp" class="btn btn-primary">Thay đổi</a>
 			</div>
 		</div>
 	</fieldset>
