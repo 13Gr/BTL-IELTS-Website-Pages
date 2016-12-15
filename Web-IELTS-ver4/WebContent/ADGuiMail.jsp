@@ -36,7 +36,7 @@ footer {
 <body background="Image/bgr.jpg">
 
 <div>
-<a href="LTWeb-IELTS.jsp">
+<a href="ADHome.jsp">
 <img align ="center" src="Image/cover.jpg" alt="logo 1" width="1348" height="300">
 </a>
 </div>
@@ -69,8 +69,7 @@ footer {
 		<div class="container">
 	<ul class="col-sm-2 nav nav-pills nav-stacked">
 		
-    <li><a href ="ADHome.jsp">Quản Lý User</a></li>
-    <li><a href ="tinNhan.jsp">Upload Đề Thi</a></li>
+    <li><a href ="ADHome.jsp">Quản Lý User</a></li>   
     <li class="active"><a href ="ADGuiMail.jsp">Soạn Tin</a></li>
     <ul>
 		</div>
