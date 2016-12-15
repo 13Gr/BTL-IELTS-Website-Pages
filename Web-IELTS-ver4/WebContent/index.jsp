@@ -25,7 +25,7 @@ div.cities {
 </head>
 <body background="Image/bgr.jpg" >
 <div>
-<a href="LTWeb-IELTS-Chuadangnhap.jsp">
+<a href="index.jsp">
 <img align ="center" src="Image/cover.jpg" alt="logo 1" width="1348" height="300">
 </a>
 </div>
