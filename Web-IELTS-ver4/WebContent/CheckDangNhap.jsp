@@ -4,8 +4,8 @@
     String pwd = request.getParameter("pass");
     String checkuser= request.getParameter("userMA");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/web-ielts-prac",
-            "root", "123456789");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/web",
+            "root", "12345678");
     Statement st = con.createStatement();
     ResultSet rs;
     
@@ -17,6 +17,7 @@
  	    	String tinhtrang= rs.getString("valueMember");
  	    		if(tinhtrang.equals("1"))
  	    	{
+ 	    			st.executeUpdate("update member set regdate =CURDATE() WHERE username='${sessionScope.username}'");
  		        session.setAttribute("username", username);
  		       		response.sendRedirect("MEMHome.jsp");
  	    	}
