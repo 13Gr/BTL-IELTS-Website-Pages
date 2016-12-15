@@ -64,12 +64,10 @@ p{
      <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span>  Trang chủ</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ><a href="Login-ThanhCong.jsp">Home</a></li>
-      <li><a href="Gioithieu.jsp#">Giới thiệu</a></li>
-	  <li><a href="LienHe.jsp">Liên hệ</a></li>
+      <li ><a href="MEMHome.jsp">Home</a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-      
+      <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
        <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -104,8 +102,8 @@ p{
 	<form name="xuly" action="" method="post">
 	<fieldset>
 	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://localhost/ltweb-group13"
-    user="root"  password="phucpro2193"/>
+    url="jdbc:mysql://localhost/web"
+    user="root"  password="12345678"/>
 	<sql:query dataSource="${snapshot}" var="result">
 		SELECT * from member where username='${sessionScope.username}';
 	</sql:query>
