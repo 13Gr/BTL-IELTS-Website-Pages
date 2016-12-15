@@ -37,24 +37,6 @@ footer {
         text-align: center;
         }
 </style>
-<script>
-angular.module('sortApp', [])
-
-.controller('mainController', function($scope) {
-  $scope.sortType     = 'name'; // set the default sort type
-  $scope.sortReverse  = false;  // set the default sort order
-  $scope.searchName   = '';     // set the default search/filter term
-  
-  // create the list of sushi rolls 
-  $scope.user = [
-    { name: 'Cali Roll', username: '14110152@student.hcmute.edu.vn', date:'03/03/1996' },
-    { name: 'Philly', username: '14110002@student.hcmute.edu.vn', date: '03/01/2004 '},
-    { name: 'Tiger', username: '14110016@student.hcmute.edu.vn', date: '04/03/2007 '},
-    { name: 'Rainbow', username: '14110010	@student.hcmute.edu.vn', date: '05/05/2006 '}
-  ];
-  
-});
-</script>
 </head>
 <body background="Image/bgr.jpg">
 	<div><img align ="center" src="Image/cover.jpg" alt="logo 1" width="1348" height="300"></div>
@@ -69,10 +51,7 @@ angular.module('sortApp', [])
     <ul class="nav navbar-nav navbar-right">
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            
-            <li><a href="DoiMatKhau.jsp"><span class="glyphicon glyphicon-refresh"></span>Đổi mật khẩu</a></li>
-            
+          <ul class="dropdown-menu">  
             <li role="separator" class="divider"></li>
             <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span>Đăng xuất</a></li>
             
@@ -88,7 +67,6 @@ angular.module('sortApp', [])
 	<ul class="col-sm-2 nav nav-pills nav-stacked">
 		
     <li class="active"><a href ="ADHome.jsp">Quản Lý User</a></li>
-    <li><a href ="tinNhan.jsp">Upload Đề Thi</a></li>
     <li><a href ="ADGuiMail.jsp">Gửi E-mail</a></li>
     <ul>
 		</div>
@@ -97,8 +75,6 @@ angular.module('sortApp', [])
   <div class="page-header">
   <h1>Quản lý tài khoản</h1>
 </div>
-  
-  
   <form>
     <div class="form-group">
       <div class="input-group">
@@ -107,61 +83,54 @@ angular.module('sortApp', [])
       </div>      
     </div>
   </form>
+<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://localhost/ltweb-group13"
+    user="root"  password="phucpro2193"/>
 
+<sql:query dataSource="${snapshot}" var="result">
+SELECT * from member
+ORDER BY regdate ASC;
+</sql:query>
   <table class="table table-bordered table-striped">
-    
     <thead>
       <tr>
+      <td>
+      </td>
+       	<td>Tên
+       	</td>
         <td>
-          <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Name
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+        Email
         </td>
         <td>
-          <a href="" ng-click="sortType = 'username'; sortReverse = !sortReverse">
-          Email
-            <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+        Thời gian gần nhất
         </td>
         <td>
-          <a href="" ng-click="sortType = 'date'; sortReverse = !sortReverse">
-          Last Time
-            <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+        Xem thông tin
         </td>
         <td>
-        Xem Thông Tin
-        </td>
-        <td>
-        	Gửi E-mail
-        	
+        	Gửi E-mail	
         </td>
         <td>Xóa 
         </td>
       </tr>
     </thead>
+    </table>
     <table class="table table-hover">
     <tbody>
-      <tr ng-repeat="roll in user | orderBy:sortType:sortReverse | filter:searchName">
+    <c:forEach var="row" items="${result.rows}">
       <td><label>
        	 <input type="checkbox" value="" id="select" checkboxid="tr" name="">
        	 </label>
    	 </td>
-        <td>{{ roll.name }}</td>
-        <td>{{ roll.username }}</td>
-        <td>{{ roll.date }}</td>
+        <td><c:out value="${row.username}"/></td>
+  		<td><c:out value="${row.email}"/></td>
+  		<td><c:out value="${row.regdate}"/></td>
         <td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
         <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
-      	<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+      	<td><a href="deleteDB.jsp?iduser=<c:out value="${row.iduser}"/>" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
       </tr>
     </tbody>
-    <button class="glyphicon glyphicon-trash" id="bt_xoa" style="width: 40px ;height: 25px; margin-top: 10px;margin-left: 10px;" title="Xóa">
-    </table>
-    
+	</c:forEach>
   </table>
   
 </div>
