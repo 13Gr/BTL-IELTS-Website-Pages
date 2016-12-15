@@ -75,6 +75,7 @@ footer {
     </div>
     
     <ul class="nav navbar-nav navbar-right">
+     <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -114,23 +115,21 @@ footer {
   
 </ul>   
   	<br>
-  	<p><label>Name File: </b><input type="text" id="Namefile" placeholder="Enter name of file"></label></p>
+  	<form method="post" enctype="multipart/form-data" action="B">
+  	<p><label>Name File: </b><input type="text" id="Namefile" name="namefile" placeholder="Enter name of file"></label></p>
   	
   	<div class="col-sm-5" >        
         <label>Readling:</label>
-        <input id="file-es" name="file-es[]" type="file" multiple> <br>
-        <a href="#"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload File</button></a>
+        <input id="file-es" name="file-es" type="file" multiple> <br>
+        <a href="#"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload File</button></a>
         <a ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Share</button></a>
 
         </div>
-        
-
+        </form>
         </div>
 	</div>
 
 </div>
-
- 
   <footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>
 </body>
 		<script>
