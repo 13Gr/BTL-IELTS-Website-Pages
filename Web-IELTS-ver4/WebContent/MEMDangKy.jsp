@@ -33,24 +33,21 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-           <li class="active"> <a class="navbar-brand" href="index.jsp" ><span class="glyphicon glyphicon-home"></span>  Trang chủ</a></li>
+      <a class="navbar-brand" href="#">WebSite hỗ trợ thi IELTS</a>
     </div>
     <ul class="nav navbar-nav">
-      
-      
+      <li ><a href="index.jsp#">Home</a></li>
+     
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="MEMDangKy.jsp"><span class="glyphicon glyphicon-check"></span> Đăng Ký</a></li>
-      <li><a href="DangNhap.jsp"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
+      <li><a href="MEMDangKy.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="DangNhap.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
 </nav>
 <div class="container">
-
-
-	
 	<div id="main" ng-app="demoApp" ng-controller="RegisterCtrl">
-    <form class="form-horizontal" name="form" ng-submit="register()" novalidate>
+    <form class="form-horizontal" name="form" ng-submit="register()" novalidate method="post" action="Check-DangKy.jsp" >
             <div class="form-group">
             <div ng-show="success" class="text-success text-center">Đăng ký thành viên thành công !</div>
             </div>
@@ -67,6 +64,18 @@
 
     </div>
     <div class="form-group">
+        <label for="username" class="col-xs-3 control-label required">Tên Đăng Nhập :</label>
+        <div class="col-xs-7">
+            <input name="username" ng-model="username" type="text"class="form-control" placeholder="Tên đăng nhập" ng-minlength="6" ng-maxlength="30" required>
+            <i class="fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid"></i>
+            <div ng-show="form.username.$dirty && form.password.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
+            <span ng-show="form.username.$error.required">Tài khoản không được bỏ trống</span>
+            <span ng-show="form.username.$error.minlength">Tài khoản phải dài hơn 3 kí tự</span>
+            <span ng-show="form.username.$error.maxlength">Tài khoản phải ngắn hơn 30 kí tự</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="password" class="col-xs-3 control-label required">Mật khẩu</label>
         <div class="col-xs-7">
             <input name="password" ng-model="password" type="password"class="form-control" placeholder="Mật khẩu" ng-minlength="6" ng-maxlength="30" required>
@@ -79,26 +88,26 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="fullname" class="col-xs-3 control-label required">Họ và tên</label>
+        <label for="mname" class="col-xs-3 control-label required">Họ và tên</label>
         <div class="col-xs-7">
-            <input name="fullname" type="text" class="form-control" placeholder="Họ và tên"  ng-model="fullname"  ng-minlength="6" ng-maxlength="50" ng-pattern="/^[a-zA-Z]+$/" required>
-            <i class="fa fa-check text-success" ng-show="form.fullname.$dirty && form.fullname.$valid"></i>
-            <div ng-show="form.fullname.$dirty && form.fullname.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-            <span ng-show="form.fullname.$error.required">Họ tên không được bỏ trống</span>
-            <span ng-show="form.fullname.$error.minlength">Họ tên phải dài hơn 6 kí tự</span>
-            <span ng-show="form.fullname.$error.maxlength">Họ tên phải ngắn hơn 50 kí tự</span>
-            <span ng-show="form.fullname.$error.pattern">Họ tên chỉ bao gồm các kí tự chữ cái</span>
+            <input name="mname" type="text" class="form-control" placeholder="Họ và tên"  ng-model="fullname"  ng-minlength="6" ng-maxlength="50" ng-pattern="/^[a-zA-Z]+$/" required>
+            <i class="fa fa-check text-success" ng-show="form.mname.$dirty && form.mname.$valid"></i>
+            <div ng-show="form.mname.$dirty && form.fullname.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
+            <span ng-show="form.mname.$error.required">Họ tên không được bỏ trống</span>
+            <span ng-show="form.mname.$error.minlength">Họ tên phải dài hơn 6 kí tự</span>
+            <span ng-show="form.mname.$error.maxlength">Họ tên phải ngắn hơn 50 kí tự</span>
+            <span ng-show="form.mname.$error.pattern">Họ tên chỉ bao gồm các kí tự chữ cái</span>
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <!-- 	<div class="form-group">
         <label for="birthday" class="col-xs-3 control-label">Ngày sinh</label>
         <div class="col-xs-7">
-            <input name="birthday" type="text" ng-model="birthday" class="form-control" placeholder="dd-mm-yyyy" ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((19[0-9]{2})|(20[0-1]{1}[0-4]{1}))$/">
+            <input name="birthday" type="text" ng-model="birthday" class="form-control" placeholder="yyyy-mm-dd" ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((19[0-9]{2})|(20[0-1]{1}[0-4]{1}))$/">
             <i class="fa fa-check text-success" ng-show="form.birthday.$dirty && form.birthday.$valid"></i>
             <div ng-show="form.birthday.$dirty && form.birthday.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>Nhập ngày sinh theo đúng định dạng dd-mm-yyyy {{birthday}}</div>
         </div>
-    </div>
+    </div>-->
     <div class="form-group">
         <div class="col-sm-offset-3 col-xs-7">
             <button type="submit" class="btn btn-primary" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Đăng ký <i class="fa fa-sign-in"></i></button>
@@ -106,8 +115,6 @@
     </div>
 </form>
 </div>
-	
-
 </div>
 <footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>
 <script>
