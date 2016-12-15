@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head><title>Đăng nhập</title>
+<head><title>Luyen thi IELTS</title>
   <meta charset="utf-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -124,61 +124,62 @@ padding: 0.6em
 </head>
  <body background="Image/bgr.jpg">
 	<div>
-		<a href="LTWeb-IELTS-Chuadangnhap.jsp">
+		<a href="index.jsp">
 		<img align ="center" src="Image/cover.jpg" alt="logo 2" width="1348" height="300">
 		</a>
 	</div>
 	<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-            <a class="navbar-brand" href="index.jsp" class="active"><span class="glyphicon glyphicon-home"></span>  Trang chủ</a>
-    </div>
-    <ul class="nav navbar-nav">
-      
-      
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="MEMDangKy.jsp"><span class="glyphicon glyphicon-check"></span> Đăng Ký</a></li>
-      <li class="active"><a href="DangNhap.jsp" ><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
-    </ul>
-  </div>
-</nav>
+	  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="index.jsp">WebSite hỗ trợ thi IELTS</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+			      <li ><a href="LTWeb-IELTS-Chuadangnhap.jsp">Home</a></li>
+			     
+			      <li><a href="Gioithieu-Chuadangnhap.jsp">Giới thiệu</a></li>
+				  <li><a href="Lienhe-Chuadangnhap.jsp">Liên hệ</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+			      <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+	  	</div>
+	</nav>
 	  <div class="login-card">
 		  <div class="panel panel-primary">
 			  <div class="panel-heading" ><font size ="6">Log-in</font></div>
-			   <br>
-			   <div class="panel-body">
-			   
+			  	<br>
+			  	<div class="panel-body">
 			    <form class="form-horizontal" method="post" action="CheckDangNhap.jsp">
 				    <div class= "form-group ">
 					    <div class="col-sm-10">
-							    <label >Username</label>
-							    	<input type="text" name="user" value="" id="user" placeholder="Username">
-							    <label >Password</label>
+							<label >Username</label>
+							    <input type="text" name="user" value="" id="user" placeholder="Username">
+							<label >Password</label>
 							    <input type="password" name="pass" value ="" size="30" id="pass" placeholder="Password">
 							    <div class="radio">
-							    <table class-="table">
-							    <td>
+							    <table class="table">
+							    <tr>
+							    	<td>
 										<input style="pading: 10px;" type="radio" id="inlineradHocvien" value="member" name="userMA" checked="checked">Học Viên
-								</td>
-								<td>
+									</td>
+									<td>
 										<input style="pading: 10px;" type="radio"  id="inlineradAdmin" value="admin" name="userMA">Admin
-								</td>
+									</td>
+								</tr>
 								</table>
 								</div>
-								
 								<input type="submit" id="btnLogin" name="login" class="login-submit btn btn-default" value="login" >
 							    <div class="radio" style="padding: 15px;">
 									<label ><input type="checkbox"> Remember Account</label>
 								</div>
 								<div class="login-help">
-							    	<a href="#">Register</a> • <a href="#">Forgot Password</a>
-							    </div>
-							    
+							    	<a href="MEMDangKy.jsp">Register</a>
+							   </div>
 				    	</div>
 			  		</div>
 		 		 </form>
-		</div>
+			</div>
 		</div>
 	</div>
 
