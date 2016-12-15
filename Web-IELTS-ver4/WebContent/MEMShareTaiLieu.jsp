@@ -35,7 +35,7 @@ footer {
 <body background="Image/bgr.jpg">
 
 <div>
-<a href="Login-ThanhCong.jsp">
+<a href="MEMHome.jsp">
 <img align ="center" src="Image/cover.jpg" alt="logo 1" width="1348" height="300">
 </a>
 </div>
@@ -49,6 +49,7 @@ footer {
     </div>
     
     <ul class="nav navbar-nav navbar-right">
+    <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -180,7 +181,7 @@ footer {
     <p>
     <a href="#" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-star"></span>Thêm vào yêu thích</a> 
               </a> <button type="button" class="btn btn-default btn-sm" >
-          <a href="C:\Users\Dan Pham\Pictures\Saved Pictures\Jersey0_11.jpg" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true" ></span> Tải về</a>
+          <a href="#" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true" ></span> Tải về</a>
         </button></p>
        
         
