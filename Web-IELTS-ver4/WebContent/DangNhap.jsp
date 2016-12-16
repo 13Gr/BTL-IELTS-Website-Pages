@@ -134,10 +134,10 @@ padding: 0.6em
 		      <a class="navbar-brand" href="index.jsp">WebSite hỗ trợ thi IELTS</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-			      <li ><a href="LTWeb-IELTS-Chuadangnhap.jsp">Home</a></li>
+			      <li ><a href="index.jsp">Home</a></li>
 			     
-			      <li><a href="Gioithieu-Chuadangnhap.jsp">Giới thiệu</a></li>
-				  <li><a href="Lienhe-Chuadangnhap.jsp">Liên hệ</a></li>
+			      <li><a href="#">Giới thiệu</a></li>
+				  <li><a href="#">Liên hệ</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 			      <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
