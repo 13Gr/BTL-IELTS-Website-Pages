@@ -49,6 +49,7 @@ footer {
     </div>
     
     <ul class="nav navbar-nav navbar-right">
+        <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">  
@@ -84,8 +85,8 @@ footer {
     </div>
   </form>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://localhost/ltweb-group13"
-    user="root"  password="phucpro2193"/>
+    url="jdbc:mysql://localhost/web"
+    user="root"  password="12345678"/>
 
 <sql:query dataSource="${snapshot}" var="result">
 SELECT * from member
