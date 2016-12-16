@@ -140,8 +140,8 @@ padding: 0.6em
 				  <li><a href="#">Liên hệ</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-			      <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			      <li><a href="MEMDangKy.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			      <li><a href="DangNhap.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		    </ul>
 	  	</div>
 	</nav>
