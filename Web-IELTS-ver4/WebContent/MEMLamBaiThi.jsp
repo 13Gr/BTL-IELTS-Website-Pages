@@ -71,7 +71,7 @@ footer {
     <li><a href ="MEMUpFile.jsp">Upload File</a></li>
     <li><a href="MEMShareTaiLieu.jsp" >Share Tài Liệu</a></li>
     
-    <li><a href="MEMGuiEmail.jsp">Gửi E-mail cho Admin</a></li>
+    <li><a href="#">Gửi E-mail cho Admin</a></li>
   </ul>
 		</div>
 	</div>
