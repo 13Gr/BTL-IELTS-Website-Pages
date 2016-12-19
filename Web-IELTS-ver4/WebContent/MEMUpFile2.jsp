@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fileinput.	css" media="all" rel="stylesheet" type="text/css" />
+        <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="js/fileinput.js" type="text/javascript"></script>
         <!--<script src="../js/es.js" type="text/javascript"></script>-->
@@ -114,17 +114,17 @@ footer {
   
 </ul>   
   	<br>
-  	<p><label>Name File: </b><input type="text" id="Namefile" placeholder="Enter name of file"></label></p>
-  	
+  	<form method="post" enctype="multipart/form-data" action="UploadServletListening">
+  	<p><label>Name File:<input type="text" name="title" id="title"  placeholder="Enter name of file"></label></p>
   	<div class="col-sm-5" >        
         <label>Listening:</label>
         <input id="file-es" name="file-es[]" type="file" multiple> <br>
-        <a href="#"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload File</button></a>
+        <a href="#"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload File</button></a>
         <a ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Share</button></a>
 
         </div>
         
-
+</form>
         </div>
 	</div>
 
@@ -137,7 +137,7 @@ footer {
     $('#file-es').fileinput({
         language: 'es',
         uploadUrl: '/file-upload-batch/2',
-        allowedFileExtensions : ['txt', 'docx'],
+        allowedFileExtensions : ['mp3'],
     	uploadUrl: "#",
     	uploadAsync: true,
     	previewFileIcon: '<i class="fa fa-file"></i>',
