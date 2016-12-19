@@ -1,5 +1,10 @@
 <%@ page language="java"  contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ page import ="java.sql.*" %>
+ <%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html>
 <html>
 <head><title>Luyen thi IELTS</title>
@@ -82,11 +87,19 @@ footer {
 		</div>
 	</div>
     <div class="col-sm-8">
+   <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://node179326-webgroup13.jelastic.servint.net/ltweb-group13"
+    user="root"  password="UJ95Q5bY1l"/>
+<sql:query dataSource="${snapshot}" var="result">
+SELECT * from sharefile
+WHERE id=${param.id}
+</sql:query>
+<c:forEach var="row" items="${result.rows}">
       <div class="page-header">
         <h1>Share tài liệu<small><font color="red"> đề số 1: Anh ngữ Việt Mỹ</font></small></h1>
       </div>
       <p>
-        <iframe allowfullscreen="" frameborder="0" height="26" src="https://www.youtube.com/embed/A9zMNOnE8P0?rel=0&amp;showinfo=0" width="420"></iframe>
+        <iframe allowfullscreen="" frameborder="0" height="26" src="...\workspace\metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Sharetailieu\upload\<c:out value="${row.files}"/>" width="420"></iframe>
         
         <button type="button" class="btn btn-default btn-md" onclick="alert('Thêm thanh công')">
          <span class="glyphicon glyphicon-star" aria-hidden="true" ></span> Thêm vào yêu thích
@@ -96,7 +109,9 @@ footer {
         </button>
         
       </p >
-        <iframe src="https://drive.google.com/file/d/0B8r9aQ-9E6rDaEdwSllqU010TmM/preview" style="height: 700px; width: 800px;" align="center"></iframe>
+       <iframe src="Sharetailieu/upload/<c:out value="${row.files}"/>" style="height: 700px; width: 800px;" align="center"></iframe>
+    <c:out value="${row.files}"/>
+    </c:forEach>
     </div>
     
   </div>
