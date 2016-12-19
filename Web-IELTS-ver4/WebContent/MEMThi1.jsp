@@ -120,7 +120,9 @@ footer {
         </ul> -->
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right">  
+    <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
+    
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -178,67 +180,69 @@ footer {
      	
      </div>
      	
-     	
+	
       <div class="form-sheet-answer">
+       <form action="MEMResult.jsp">  
 		<div class="form-group form-group-sm">
 		
 			<h4 ><center>PHẦN TRẢ LỜI</center></h4>
 			<h4><center>READING</center></h4>
-      		<label class="col-sm-4 control-label" for="sm">Câu 1:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c1">Câu 1:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 2:</label>
+      		<label class="col-sm-4 control-label" for="sm"name="c2">Câu 2:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 3:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c3">Câu 3:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 4:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c4">Câu 4:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 5:</label>
+      		<label class="col-sm-4 control-label" for="sm"
+      		name="c5" >Câu 5:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 6:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c6" >Câu 6:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 7:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c7">Câu 7:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 8:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c7">Câu 8:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 9:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c9">Câu 9:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div>
     	</div>
     	<div class="form-group form-group-sm">
-      		<label class="col-sm-4 control-label" for="sm">Câu 10:</label>
+      		<label class="col-sm-4 control-label" for="sm" name="c10">Câu 10:</label>
       		<div class="col-sm-8">
         	<input class="form-control" type="text" id="sm"><br>
       		</div> 
@@ -664,16 +668,11 @@ footer {
         	<input class="form-control" type="text" id="sm"><br>
       		</div> 
     	</div>
-    	<center>
-    	<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Nộp bài</button>
-		</center>
+    		<button class="btn btn-default"  type="submit" id="emc-submit" onclick="stop()">Submit Answers</button>
+		</form>
+		
 	</div>
 
-    
-    
-      
-    
-    
   </div>
 
   </div>
