@@ -45,11 +45,10 @@ footer {
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span>  Trang chủ</a>
+      <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span>Trang chủ</a>
     </div>
     
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">  
@@ -72,71 +71,72 @@ footer {
     <ul>
 		</div>
 	</div>
-    <div class="container col-sm-8" ng-app="sortApp" ng-controller="mainController">
+    <div class="container col-sm-10" ng-app="sortApp" ng-controller="mainController">
   <div class="page-header">
   <h1>Quản lý tài khoản</h1>
 </div>
-  <form>
+<!--  <form>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
         <input type="text" class="form-control" placeholder="Search to Username" ng-model="searchName">
       </div>      
     </div>
-  </form>
+  </form>-->
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://localhost/web"
-    user="root"  password="12345678"/>
-
+    url="jdbc:mysql://node179326-webgroup13.jelastic.servint.net/ltweb-group13"
+    user="root"  password="UJ95Q5bY1l"/>
 <sql:query dataSource="${snapshot}" var="result">
 SELECT * from member
 ORDER BY regdate ASC;
 </sql:query>
-  <table class="table table-bordered table-striped">
+  <table class="table table-hover">
     <thead>
       <tr>
-      <td>
-      </td>
-       	<td>Tên
-       	</td>
-        <td>
+       	<th>Tên
+       	</th>
+        <th>
         Email
-        </td>
-        <td>
+        </th>
+        <th>
         Thời gian gần nhất
-        </td>
-        <td>
+        </th>
+        <th>
+        Tình Trạng
+        </th>
+        <th>
         Xem thông tin
-        </td>
-        <td>
+        </th>
+        <th>
         	Gửi E-mail	
-        </td>
-        <td>Xóa 
-        </td>
+        </th>
+        <th>Xóa 
+        </th>
+        <th>
+        Khóa
+        </th>
+        <td>
+        Mở Khóa
+        </th>
       </tr>
     </thead>
-    </table>
-    <table class="table table-hover">
-    <tbody>
+    <tbody >
     <c:forEach var="row" items="${result.rows}">
-      <td><label>
-       	 <input type="checkbox" value="" id="select" checkboxid="tr" name="">
-       	 </label>
-   	 </td>
         <td><c:out value="${row.username}"/></td>
   		<td><c:out value="${row.email}"/></td>
   		<td><c:out value="${row.regdate}"/></td>
+  		<td id="tinhtrang" name="tinhtrang" value="${row.tinhtrang}"><c:out value="${row.tinhtrang}"/></td>
         <td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
         <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
       	<td><a href="deleteDB.jsp?iduser=<c:out value="${row.iduser}"/>" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+      <td><a href="khoataikhoan.jsp?iduser=<c:out value="${row.iduser}"/>" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></a></td>
+      <td><a href="mokhoataikhoan.jsp?iduser=<c:out value="${row.iduser}"/>" id="myBtn" type="button" class="btn btn-info"> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></a></td>
       </tr>
     </tbody>
 	</c:forEach>
   </table>
   
 </div>
-	<div class="col-sm-2"></div>
-  </div>
 </div>
 <footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>
 </body>
