@@ -1,25 +1,37 @@
 <%@ page language="java"  contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ page import ="java.sql.*" %>
+ <%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html>
-<html >
-<head><title>Upload File</title>
+<html>
+<head><title>Luyen thi IELTS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fileinput.	css" media="all" rel="stylesheet" type="text/css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="js/fileinput.js" type="text/javascript"></script>
-        <!--<script src="../js/es.js" type="text/javascript"></script>-->
-         <script src="js/fileinput_locale_es.js" type="text/javascript"></script>
-         <link href="css/font-awesome.min.css" rel="stylesheet">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
-<style>
-	img {
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+	  img {
     width: 100%;
     height: auto;
 }
-body{
-	background-color: #eee;
+div.cities {
+    background-color: blue;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+} 
+.thumb {
+    width: 200px;
+    height: 200px;
+    background-color: #3e3e3e;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 footer {
         padding: 0.2em;
@@ -28,44 +40,14 @@ footer {
         clear: left;
         text-align: center;
         }
- .btn-5 {
- 	background-color:lightblue;
-  color: red;
-  cursor: pointer;
-  display: block;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 45px;
-  margin: 0 auto 2em;
-  max-width: 160px;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  width: 100%;
-}
-
-.btn-5 {
-  border: 0 solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-  outline: 1px solid;
-  outline-color: rgba(255, 255, 255, 0.5);
-  outline-offset: 0px;
-  text-shadow: none;
-  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-}
- 
-.btn-5:hover {
-  border: 1px solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-}
 </style>
 </head>
 <body background="Image/bgr.jpg">
+<div>
+<a href="MEMHome.jsp">
 <img align ="center" src="Image/cover.jpg" alt="logo 1" width="1348" height="300">
+</a>
+</div>
 <div>
 
 <nav class="navbar navbar-inverse">
@@ -75,7 +57,7 @@ footer {
     </div>
     
     <ul class="nav navbar-nav navbar-right">
-     <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
+    <li><a href="MEMInfo.jsp"><%=session.getAttribute("username")%></a></li>
      <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Tài khoản <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -96,98 +78,48 @@ footer {
     <div class="col-sm-2">
 		<div class="container">
 	<ul class="col-sm-2 nav nav-pills nav-stacked">
-    
-    
-    <li><a href ="MEMLuyenTap.jsp">Luyện tập</a></li>
-    <li><a href ="MEMLamBaiThi.jsp">Làm bài thi thử</a></li>
-    <li class="active"><a href ="MEMUpFile.jsp">Upload File</a></li>
-    <li><a href="MEMShareTaiLieu.jsp" >Share Tài Liệu</a></li>
-    
-    <li><a href="MEMGuiEmail.jsp">Gửi E-mail cho Admin</a></li>
+	    <li><a href ="MEMLuyenTap.jsp">Luyện tập</a></li>
+	    <li><a href ="MEMLamBaiThi.jsp">Làm bài thi thử</a></li>
+	    <li><a href ="MEMUpFile.jsp">Upload File</a></li>
+	    <li class="active"><a href="MEMShareTaiLieu.jsp" >Share Tài Liệu</a></li>
+	    <li><a href="MEMGuiEmail.jsp">Gửi E-mail cho Admin</a></li>
   </ul>
 		</div>
 	</div>
-	
- <div class="container kv-main col-sm-10">
- 	<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="MEMUpFile.jsp">Reading</a></li>
-  <li role="presentation"><a href="MEMUpFile2.jsp">Listening</a></li>
-  
-</ul>   
-  	<br>
-  	<form method="post" enctype="multipart/form-data" action="B">
-  	<p><label>Name File: </b><input type="text" id="Namefile" name="namefile" placeholder="Enter name of file"></label></p>
-  	
-  	<div class="col-sm-5" >        
-        <label>Readling:</label>
-        <input id="file-es" name="file-es" type="file" multiple> <br>
-        <a href="#"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload File</button></a>
-        <a ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Share</button></a>
-
-        </div>
-        </form>
-        </div>
-	</div>
-
-</div>
-  <footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>
-</body>
-		<script>
-    $('#file-es').fileinput({
-        language: 'es',
-        uploadUrl: '/file-upload-batch/2',
-        allowedFileExtensions : ['txt', 'docx'],
-    	uploadUrl: "#",
-    	uploadAsync: true,
-    	previewFileIcon: '<i class="fa fa-file"></i>',
-    	allowedPreviewTypes: null, 
-    	previewFileIconSettings: {
-        'docx': '<i class="fa fa-file-word-o text-primary"></i>',
-        'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
-        'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
-        'jpg': '<i class="fa fa-file-photo-o text-warning"></i>',
-        'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
-        'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
-    }
-
-    });
-     $('#file-es1').fileinput({
-        language: 'es',
-        uploadUrl: '/file-upload-batch/2',
-        allowedFileExtensions : ['txt','docx'],
-    	uploadUrl: "#",
-    	uploadAsync: true,
-    	previewFileIcon: '<i class="fa fa-file"></i>',
-    	allowedPreviewTypes: null, 
-    	previewFileIconSettings: {
-        'docx': '<i class="fa fa-file-word-o text-primary"></i>',
-        'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
-        'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
-        'jpg': '<i class="fa fa-file-photo-o text-warning"></i>',
-        'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
-        'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
-    }
-
-    });
-     $('#file-es2').fileinput({
-        language: 'es',
-        uploadUrl: '/file-upload-batch/2',
-        allowedFileExtensions : ['mp3'],
-    	uploadUrl: "#",
-    	uploadAsync: true,
-    	previewFileIcon: '<i class="fa fa-file"></i>',
-    	allowedPreviewTypes: null, 
-    	previewFileIconSettings: {
-        'docx': '<i class="fa fa-file-word-o text-primary"></i>',
-        'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
-        'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
-        'jpg': '<i class="fa fa-file-photo-o text-warning"></i>',
-        'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
-        'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
-    }
-
-    });
+    <div class="col-sm-8">
+   <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://node179326-webgroup13.jelastic.servint.net/ltweb-group13"
+    user="root"  password="UJ95Q5bY1l"/>
+<sql:query dataSource="${snapshot}" var="result">
+SELECT * from sharefile
+WHERE id=${param.id}
+</sql:query>
+<c:forEach var="row" items="${result.rows}">
+      <div class="page-header">
+        <h1>Share tài liệu<small><font color="red"> đề số 1: Anh ngữ Việt Mỹ</font></small></h1>
+      </div>
+      <p>
+        <iframe allowfullscreen="" frameborder="0" height="26" src="...\workspace\metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Sharetailieu\upload\<c:out value="${row.files}"/>" width="420"></iframe>
+        
+        <button type="button" class="btn btn-default btn-md" onclick="alert('Thêm thanh công')">
+         <span class="glyphicon glyphicon-star" aria-hidden="true" ></span> Thêm vào yêu thích
+        </button>
+        <button type="button" class="btn btn-default btn-md" >
+          <a href="C:\Users\Dan Pham\Pictures\Saved Pictures\Jersey0_11.jpg" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true" ></span> Tải về</a>
+        </button>
+        
+      </p >
+       <iframe src="Sharetailieu/upload/<c:out value="${row.files}"/>" style="height: 700px; width: 800px;" align="center"></iframe>
+    <c:out value="${row.files}"/>
+    </c:forEach>
+    </div>
     
-	</script>
+  </div>
 
+  </div>
+	<div class="col-sm-2"></div>
+  </div>
+</div>
+	<footer class="margin-bottom:0px;margin-top:10px;">Copyright © luyenThiIELTS.com</footer>	
+</body>
 </html>
