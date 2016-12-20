@@ -87,11 +87,11 @@ div.cities {
       <td><b>Người đăng</b></td>
     </tr>
     <tr>
-      <td><a href="Lambaithi-reading.jsp" >IELTS Reading Sample 1</td>
+      <td><a href="MEMLuyenTapDoc1.jsp" >IELTS Reading Sample 1</td>
       <td>pcd</td>
     </tr>
     <tr>
-      <td><a href="#" >IELTS Reading Sample 2</td>
+      <td><a href="MEMLuyenTapNghe1.jsp" >IELTS Reading Sample 2</td>
       <td>pcd</td>
     </tr>
   </table>
